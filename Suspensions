@@ -1,0 +1,30 @@
+SELECT
+  2017 as schendyr
+  ,s.ssid
+  ,COUNT(s.incident_id) as suspcount
+  ,SUM(s.assigned_duration_days) as suspdays
+  ,'2017-06-01' as occurdesc
+
+FROM
+(SELECT DISTINCT
+  stu.state_student_id as ssid
+  ,inc.incident_id
+  ,con.assigned_duration_days
+  ,'2017-06-01' as occurdesc
+
+from behavior.incidents inc
+
+left join behavior.participants par on inc.incident_id = par.incident_id
+      and to_char(par.created_at,'YYYY-MM-DD') > '2016-08-01' and to_char(par.created_at,'YYYY-MM-DD') < '2017-06-30'
+
+left join matviews.ss_cube cub on par.student_id = cub.student_id
+left join public.students stu on cub.student_id = stu.student_id
+
+left join behavior.violations vio on par.participant_id = vio.participant_id
+left join behavior.consequences con on vio.participant_id = con.participant_id
+left join codes.behavior_consequences bc on con.consequence_type_id = bc.code_id
+
+where cub.academic_year = 2017 and to_char(inc.incident_date,'YYYY-MM-DD') > '2016-08-01' and to_char(inc.incident_date,'YYYY-MM-DD') < '2017-06-30'
+AND (bc.code_translation = 'Out of School Suspension' or bc.code_translation='In School Suspension')) s
+
+GROUP BY schendyr, ssid
