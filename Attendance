@@ -1,0 +1,31 @@
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2017-06-01' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2016-08-01' and dr.date<='2017-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2017
+AND cub.entry_date<='2017-06-01' and cub.leave_date>='2017-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
