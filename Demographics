@@ -1,0 +1,54 @@
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,sit.site_name as sname
+  ,sit.site_id as scode
+  ,CASE cub.grade_level_id
+    WHEN 18 then 'K'
+    WHEN 20 then 'TK'
+    ELSE to_char(cub.grade_level_id,'9')
+    END as grade
+  ,stu.gender
+  ,CASE WHEN stu.is_hispanic = 't' OR e.code_translation = 'Hispanic'
+    THEN 'Hispanic'
+  ELSE
+    (CASE WHEN
+              e.code_translation = 'Other Asian'
+               OR e.code_translation = 'Cambodian'
+               OR e.code_translation = 'Laotian'
+               OR e.code_translation = 'Asian Indian'
+               OR e.code_translation = 'Vietnamese'
+               OR e.code_translation = 'Korean'
+               OR e.code_translation = 'Japanese'
+               OR e.code_translation = 'Chinese'
+               OR e.code_translation = 'Hmong'
+      THEN 'Asian'
+      WHEN e.code_translation = 'Other Pacific Islander'
+               OR e.code_translation = 'Tahitian'
+               OR e.code_translation = 'Samoan'
+               OR e.code_translation = 'Guamanian'
+               OR e.code_translation = 'Hawaiian'
+      THEN 'Pacific Islander'
+     ELSE e.code_translation END) END        AS raceethnicity
+  ,CASE
+    WHEN el.code_key='RFEP' AND sl.redesignation_date>'2017-06-01' then 'EL'
+    WHEN el.code_key='RFEP' AND sl.redesignation_date<='2017-06-01' then 'RFEP'
+    ELSE el.code_key
+    END as langclass
+  ,hl.code_translation as homelang
+  ,'FRL' as frlgroup
+  ,ped.code_translation as parented
+  ,'2017-06-01' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN codes.ethnicity e ON stu.primary_ethnicity=e.code_id
+LEFT JOIN codes.english_proficiency el on stu.english_proficiency = el.code_id
+LEFT JOIN public.student_language sl on cub.student_id=sl.student_id
+LEFT JOIN codes.language hl ON sl.home_language::INT=hl.code_id::INT
+LEFT JOIN codes.parent_education ped ON ped.code_id=stu.parent_education_level
+
+WHERE cub.academic_year=2017
+AND cub.entry_date<='2017-06-01' and cub.leave_date>='2017-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
