@@ -1,0 +1,21 @@
+SELECT
+  2017 as schendyr
+  ,stu.state_student_id
+  ,CASE WHEN pd.code_translation IS NULL then 'No' ELSE 'Yes' END as sped
+  ,CASE WHEN gate.code_translation IS NULL then 'No' ELSE 'Yes' END as gate
+  ,CONCAT(pd.code_translation, gate.code_translation) as progdesc
+  ,'2017-06-01' as occurdesc
+
+FROM public.students stu
+LEFT JOIN public.student_specialed sped ON sped.student_id=stu.student_id
+LEFT JOIN codes.primary_disability pd ON pd.code_id=sped.primary_disability
+LEFT JOIN
+   (SELECT *
+   FROM public.student_program_aff spa
+   JOIN codes.student_programs prog on prog.code_id = spa.student_program_id
+   WHERE prog.code_translation = 'Gifted and Talented'
+     AND (end_date is null or end_date>'2017-06-01')) AS gate
+        ON stu.student_id = gate.student_id
+WHERE stu.student_id IN 
+(SELECT cub.student_id FROM matviews.ss_cube cub 
+WHERE academic_year=2017 AND cub.entry_date<='2017-06-01' and cub.leave_date>='2017-06-01')
