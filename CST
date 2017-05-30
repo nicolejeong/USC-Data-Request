@@ -1,0 +1,219 @@
+/*2013*/
+SELECT
+  '2013' as schendyr
+  ,stu.state_student_id
+  ,ela13."cst_2013_ela_testGradeLevel" as grade
+  ,'ELA' as groupname
+  ,ela13."cst_2013_ela_testTakenText" as testname
+  ,ela13."cst_2013_ela_scaleScore" as scalescore
+  ,ela13."cst_2013_ela_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2013_ela ela13
+LEFT JOIN public.students stu on stu.student_id=ela13.student_id
+
+UNION
+
+SELECT
+  '2013' as schendyr
+  ,stu.state_student_id
+  ,math13."cst_2013_math_testGradeLevel" as grade
+  ,'Math' as groupname
+  ,math13."cst_2013_math_testTakenText" as testname
+  ,math13."cst_2013_math_scaleScore" as scalescore
+  ,math13."cst_2013_math_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2013_math math13
+LEFT JOIN public.students stu on stu.student_id=math13.student_id
+
+UNION
+
+SELECT
+  '2013' as schendyr
+  ,stu.state_student_id
+  ,sci13."cst_2013_sci_testGradeLevel" as grade
+  ,'Science' as groupname
+  ,sci13."cst_2013_sci_testTakenText" as testname
+  ,sci13."cst_2013_sci_scaleScore" as scalescore
+  ,sci13."cst_2013_sci_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2013_sci sci13
+LEFT JOIN public.students stu on stu.student_id=sci13.student_id
+
+UNION
+
+SELECT
+  '2013' as schendyr
+  ,stu.state_student_id
+  ,hss13."cst_2013_hss_testGradeLevel" as grade
+  ,'Social Science' as groupname
+  ,hss13."cst_2013_hss_testTakenText" as testname
+  ,hss13."cst_2013_hss_scaleScore" as scalescore
+  ,hss13."cst_2013_hss_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2013_hss hss13
+LEFT JOIN public.students stu on stu.student_id=hss13.student_id
+
+/*2012*/
+SELECT
+  '2012' as schendyr
+  ,stu.state_student_id
+  ,ela12."cst_2012_ela_testGradeLevel" as grade
+  ,'ELA' as groupname
+  ,ela12."cst_2012_ela_testTakenText" as testname
+  ,ela12."cst_2012_ela_scaleScore" as scalescore
+  ,ela12."cst_2012_ela_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2012_ela ela12
+LEFT JOIN public.students stu on stu.student_id=ela12.student_id
+
+UNION
+
+SELECT
+  '2012' as schendyr
+  ,stu.state_student_id
+  ,math12."cst_2012_math_testGradeLevel" as grade
+  ,'Math' as groupname
+  ,math12."cst_2012_math_testTakenText" as testname
+  ,math12."cst_2012_math_scaleScore" as scalescore
+  ,math12."cst_2012_math_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2012_math math12
+LEFT JOIN public.students stu on stu.student_id=math12.student_id
+
+UNION
+
+SELECT
+  '2012' as schendyr
+  ,stu.state_student_id
+  ,sci12."cst_2012_sci_testGradeLevel" as grade
+  ,'Science' as groupname
+  ,sci12."cst_2012_sci_testTakenText" as testname
+  ,sci12."cst_2012_sci_scaleScore" as scalescore
+  ,sci12."cst_2012_sci_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2012_sci sci12
+LEFT JOIN public.students stu on stu.student_id=sci12.student_id
+
+UNION
+
+SELECT
+  '2012' as schendyr
+  ,stu.state_student_id
+  ,hss12."cst_2012_hss_testGradeLevel" as grade
+  ,'Social Science' as groupname
+  ,hss12."cst_2012_hss_testTakenText" as testname
+  ,hss12."cst_2012_hss_scaleScore" as scalescore
+  ,hss12."cst_2012_hss_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2012_hss hss12
+LEFT JOIN public.students stu on stu.student_id=hss12.student_id
+
+/*2011*/
+SELECT
+  '2011' as schendyr
+  ,stu.state_student_id
+  ,ela11."cst_2011_ela_testGradeLevel" as grade
+  ,'ELA' as groupname
+  ,ela11."cst_2011_ela_testTakenText" as testname
+  ,ela11."cst_2011_ela_scaleScore" as scalescore
+  ,ela11."cst_2011_ela_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2011_ela ela11
+LEFT JOIN public.students stu on stu.student_id=ela11.student_id
+
+UNION
+
+SELECT
+  '2011' as schendyr
+  ,stu.state_student_id
+  ,math11."cst_2011_math_testGradeLevel" as grade
+  ,'Math' as groupname
+  ,math11."cst_2011_math_testTakenText" as testname
+  ,math11."cst_2011_math_scaleScore" as scalescore
+  ,math11."cst_2011_math_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2011_math math11
+LEFT JOIN public.students stu on stu.student_id=math11.student_id
+
+UNION
+
+SELECT
+  '2011' as schendyr
+  ,stu.state_student_id
+  ,sci11."cst_2011_sci_testGradeLevel" as grade
+  ,'Science' as groupname
+  ,sci11."cst_2011_sci_testTakenText" as testname
+  ,sci11."cst_2011_sci_scaleScore" as scalescore
+  ,sci11."cst_2011_sci_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2011_sci sci11
+LEFT JOIN public.students stu on stu.student_id=sci11.student_id
+
+UNION
+
+SELECT
+  '2011' as schendyr
+  ,stu.state_student_id
+  ,hss11."cst_2011_hss_testGradeLevel" as grade
+  ,'Social Science' as groupname
+  ,hss11."cst_2011_hss_testTakenText" as testname
+  ,hss11."cst_2011_hss_scaleScore" as scalescore
+  ,hss11."cst_2011_hss_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2011_hss hss11
+LEFT JOIN public.students stu on stu.student_id=hss11.student_id
+
+/*2010*/
+SELECT
+  '2010' as schendyr
+  ,stu.state_student_id
+  ,ela10."cst_2010_ela_testGradeLevel" as grade
+  ,'ELA' as groupname
+  ,ela10."cst_2010_ela_testTakenText" as testname
+  ,ela10."cst_2010_ela_scaleScore" as scalescore
+  ,ela10."cst_2010_ela_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2010_ela ela10
+LEFT JOIN public.students stu on stu.student_id=ela10.student_id
+
+UNION
+
+SELECT
+  '2010' as schendyr
+  ,stu.state_student_id
+  ,math10."cst_2010_math_testGradeLevel" as grade
+  ,'Math' as groupname
+  ,math10."cst_2010_math_testTakenText" as testname
+  ,math10."cst_2010_math_scaleScore" as scalescore
+  ,math10."cst_2010_math_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2010_math math10
+LEFT JOIN public.students stu on stu.student_id=math10.student_id
+
+UNION
+
+SELECT
+  '2010' as schendyr
+  ,stu.state_student_id
+  ,sci10."cst_2010_sci_testGradeLevel" as grade
+  ,'Science' as groupname
+  ,sci10."cst_2010_sci_testTakenText" as testname
+  ,sci10."cst_2010_sci_scaleScore" as scalescore
+  ,sci10."cst_2010_sci_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2010_sci sci10
+LEFT JOIN public.students stu on stu.student_id=sci10.student_id
+
+UNION
+
+SELECT
+  '2010' as schendyr
+  ,stu.state_student_id
+  ,hss10."cst_2010_hss_testGradeLevel" as grade
+  ,'Social Science' as groupname
+  ,hss10."cst_2010_hss_testTakenText" as testname
+  ,hss10."cst_2010_hss_scaleScore" as scalescore
+  ,hss10."cst_2010_hss_performanceLevelText" as proficiencylevel
+
+FROM state_data_ca.cst_2010_hss hss10
+LEFT JOIN public.students stu on stu.student_id=hss10.student_id
