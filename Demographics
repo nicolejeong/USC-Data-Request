@@ -3,6 +3,8 @@ SELECT DISTINCT
   ,stu.state_student_id as ssid
   ,sit.site_name as sname
   ,sit.site_id as scode
+  ,'Los Angeles Unified' as dname
+  ,64733 as dcode
   ,CASE cub.grade_level_id
     WHEN 18 then 'K'
     WHEN 20 then 'TK'
