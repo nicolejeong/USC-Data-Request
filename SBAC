@@ -1,41 +1,130 @@
+/*2017*/
 SELECT
-  '2016' as schendyr
+  '2017' as schendyr
   ,stu.state_student_id AS ssid
-  ,math."caaspp_2016_math_testGradeLevel" as grade
+  ,math."caaspp_2017_math_testGradeLevel" as grade
   ,'Math' AS testname
-  ,math."caaspp_2016_math_scaleScore" as scalescore
-  ,math."caaspp_2016_math_scaleScore" as scalescore
-  ,math."caaspp_2016_math_performanceLevelText" as acheivementlevel
+  ,math."caaspp_2017_math_scaleScore" as scalescore
+  ,math."caaspp_2017_math_scaleScore" as scalescore
+  ,math."caaspp_2017_math_performanceLevelText" as acheivementlevel
   ,'' AS readlevel
   ,'' AS listenlevel
   ,'' AS writinglevel
   ,'' AS researchlevel
-  ,math."caaspp_2016_math_cluster1PerformanceLevelText" AS conceptslevel
-  ,math."caaspp_2016_math_cluster2PerformanceLevelText" AS problemlevel
-  ,math."caaspp_2016_math_cluster3PerformanceLevelText" AS reasonlevel
-  ,'2017-06-01' AS occurlevel
+  ,math."caaspp_2017_math_cluster1PerformanceLevelText" AS conceptslevel
+  ,math."caaspp_2017_math_cluster2PerformanceLevelText" AS problemlevel
+  ,math."caaspp_2017_math_cluster3PerformanceLevelText" AS reasonlevel
+  ,'2017-05-30' AS occurdesc
 
-FROM state_data_ca.caaspp_2016_math math
+FROM state_data_ca.caaspp_2017_math math
 LEFT JOIN public.students stu ON stu.student_id=math.student_id
+
+UNION
+
+SELECT
+  '2017' as schendyr
+  ,stu.state_student_id AS ssid
+  ,ela."caaspp_2017_ela_testGradeLevel" as grade
+  ,'ELA' AS testname
+  ,ela."caaspp_2017_ela_scaleScore" as scalescore
+  ,ela."caaspp_2017_ela_scaleScore" as scalescore
+  ,ela."caaspp_2017_ela_performanceLevelText" as acheivementlevel
+  ,ela."caaspp_2017_ela_cluster1PerformanceLevelText" AS readlevel
+  ,ela."caaspp_2017_ela_cluster3PerformanceLevelText" AS listenlevel
+  ,ela."caaspp_2017_ela_cluster2PerformanceLevelText" AS writinglevel
+  ,'' AS researchlevel
+  ,'' AS conceptslevel
+  ,'' AS problemlevel
+  ,'' AS reasonlevel
+  ,'2017-05-30' AS occurdesc
+
+FROM state_data_ca.caaspp_2017_ela ela
+LEFT JOIN public.students stu ON stu.student_id=ela.student_id
+
+/*2016*/
+SELECT
+  '2016' as schendyr
+  ,stu.state_student_id AS ssid
+  ,math16."caaspp_2016_math_testGradeLevel" as grade
+  ,'Math' AS testname
+  ,math16."caaspp_2016_math_scaleScore" as scalescore
+  ,math16."caaspp_2016_math_scaleScore" as scalescore
+  ,math16."caaspp_2016_math_performanceLevelText" as acheivementlevel
+  ,'' AS readlevel
+  ,'' AS listenlevel
+  ,'' AS writinglevel
+  ,'' AS researchlevel
+  ,math16."caaspp_2016_math_cluster1PerformanceLevelText" AS conceptslevel
+  ,math16."caaspp_2016_math_cluster2PerformanceLevelText" AS problemlevel
+  ,math16."caaspp_2016_math_cluster3PerformanceLevelText" AS reasonlevel
+  ,'2017-05-30' AS occurdesc
+
+FROM state_data_ca.caaspp_2016_math math16
+LEFT JOIN public.students stu ON stu.student_id=math16.student_id
 
 UNION
 
 SELECT
   '2016' as schendyr
   ,stu.state_student_id AS ssid
-  ,ela."caaspp_2016_ela_testGradeLevel" as grade
+  ,ela16."caaspp_2016_ela_testGradeLevel" as grade
   ,'ELA' AS testname
-  ,ela."caaspp_2016_ela_scaleScore" as scalescore
-  ,ela."caaspp_2016_ela_scaleScore" as scalescore
-  ,ela."caaspp_2016_ela_performanceLevelText" as acheivementlevel
-  ,ela."caaspp_2016_ela_cluster1PerformanceLevelText" AS readlevel
-  ,ela."caaspp_2016_ela_cluster3PerformanceLevelText" AS listenlevel
-  ,ela."caaspp_2016_ela_cluster2PerformanceLevelText" AS writinglevel
+  ,ela16."caaspp_2016_ela_scaleScore" as scalescore
+  ,ela16."caaspp_2016_ela_scaleScore" as scalescore
+  ,ela16."caaspp_2016_ela_performanceLevelText" as acheivementlevel
+  ,ela16."caaspp_2016_ela_cluster1PerformanceLevelText" AS readlevel
+  ,ela16."caaspp_2016_ela_cluster3PerformanceLevelText" AS listenlevel
+  ,ela16."caaspp_2016_ela_cluster2PerformanceLevelText" AS writinglevel
   ,'' AS researchlevel
   ,'' AS conceptslevel
   ,'' AS problemlevel
   ,'' AS reasonlevel
-  ,'2017-06-01' AS occurlevel
+  ,'2017-05-30' AS occurdesc
 
-FROM state_data_ca.caaspp_2016_ela ela
+FROM state_data_ca.caaspp_2016_ela ela16
+LEFT JOIN public.students stu ON stu.student_id=ela16.student_id
+
+/*2015*/
+SELECT
+  '2015' as schendyr
+  ,stu.state_student_id AS ssid
+  ,math."caaspp_2015_math_testGradeLevel" as grade
+  ,'Math' AS testname
+  ,math."caaspp_2015_math_scaleScore" as scalescore
+  ,math."caaspp_2015_math_scaleScore" as scalescore
+  ,math."caaspp_2015_math_performanceLevelText" as acheivementlevel
+  ,'' AS readlevel
+  ,'' AS listenlevel
+  ,'' AS writinglevel
+  ,'' AS researchlevel
+  ,math."caaspp_2015_math_cluster1PerformanceLevelText" AS conceptslevel
+  ,math."caaspp_2015_math_cluster2PerformanceLevelText" AS problemlevel
+  ,math."caaspp_2015_math_cluster3PerformanceLevelText" AS reasonlevel
+  ,'2017-05-30' AS occurdesc
+
+FROM state_data_ca.caaspp_2015_math math
+LEFT JOIN public.students stu ON stu.student_id=math.student_id
+
+UNION
+
+SELECT
+  '2015' as schendyr
+  ,stu.state_student_id AS ssid
+  ,ela."caaspp_2015_ela_testGradeLevel" as grade
+  ,'ELA' AS testname
+  ,ela."caaspp_2015_ela_scaleScore" as scalescore
+  ,ela."caaspp_2015_ela_scaleScore" as scalescore
+  ,ela."caaspp_2015_ela_performanceLevelText" as acheivementlevel
+  ,ela."caaspp_2015_ela_cluster1PerformanceLevelText" AS readlevel
+  ,ela."caaspp_2015_ela_cluster3PerformanceLevelText" AS listenlevel
+  ,ela."caaspp_2015_ela_cluster2PerformanceLevelText" AS writinglevel
+  ,'' AS researchlevel
+  ,'' AS conceptslevel
+  ,'' AS problemlevel
+  ,'' AS reasonlevel
+  ,'2017-05-30' AS occurdesc
+
+FROM state_data_ca.caaspp_2015_ela ela
 LEFT JOIN public.students stu ON stu.student_id=ela.student_id
+
+
