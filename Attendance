@@ -1,3 +1,4 @@
+/*2017*/
 SELECT DISTINCT
   cub.academic_year as schendyr
   ,stu.state_student_id as ssid
@@ -28,4 +29,249 @@ LEFT JOIN
 
 WHERE cub.academic_year=2017
 AND cub.entry_date<='2017-06-01' and cub.leave_date>='2017-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2016*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2016-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2016-08-01' and dr.date<='2016-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2016
+AND cub.entry_date<='2016-06-01' and cub.leave_date>='2016-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2015*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2015-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2015-08-01' and dr.date<='2015-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2015
+AND cub.entry_date<='2015-06-01' and cub.leave_date>='2015-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2014*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2014-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2014-08-01' and dr.date<='2014-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2014
+AND cub.entry_date<='2014-06-01' and cub.leave_date>='2014-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2013*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2013-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2013-08-01' and dr.date<='2013-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2013
+AND cub.entry_date<='2013-06-01' and cub.leave_date>='2013-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2012*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2012-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2012-08-01' and dr.date<='2012-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2012
+AND cub.entry_date<='2012-06-01' and cub.leave_date>='2012-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2011*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2011-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2011-08-01' and dr.date<='2011-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2011
+AND cub.entry_date<='2011-06-01' and cub.leave_date>='2011-06-01'
+AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
+
+UNION
+
+/*2010*/
+SELECT DISTINCT
+  cub.academic_year as schendyr
+  ,stu.state_student_id as ssid
+  ,a.enroll
+  ,a.enroll - a.absent as present
+  ,a.absent
+  ,'2010-06-30' as occurdesc
+
+FROM matviews.ss_cube cub
+LEFT JOIN public.students stu ON cub.student_id=stu.student_id
+LEFT JOIN public.sites sit on cub.site_id=sit.site_id
+LEFT JOIN
+  (SELECT
+  dr.student_id
+  ,SUM(CASE fl.flag_text
+      WHEN 'Not Enrolled' then 0
+      ELSE 1 END) as enroll
+  ,SUM(CASE fl.flag_text
+      WHEN 'Excused Absence' then 1
+      WHEN 'Unexcused Absence' then 1
+      WHEN 'Out of School Suspension' then 1
+      WHEN 'Unexcused Absence Reconciled' then 1
+      ELSE 0 END) as absent
+  FROM attendance.daily_records dr
+  LEFT JOIN public.attendance_flags fl ON dr.attendance_flag_id=fl.attendance_flag_id
+  WHERE dr.date>='2010-08-01' and dr.date<='2010-06-30'
+  GROUP BY dr.student_id) a ON cub.student_id=a.student_id
+
+WHERE cub.academic_year=2010
+AND cub.entry_date<='2010-06-01' and cub.leave_date>='2010-06-01'
 AND cub.course_id IN (SELECT cou.course_id from public.courses cou WHERE cou.department_id=23)
